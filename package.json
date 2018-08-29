@@ -1,0 +1,34 @@
+{
+  "name": "transfer",
+  "version": "1.0.0",
+  "description": "中转地址守护程序",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tdhr",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "co": "^4.6.0",
+    "co-mysql": "^1.0.0",
+    "crypto": "^1.0.1",
+    "ejs": "^2.6.1",
+    "iconv-lite": "^0.4.24",
+    "jquery": "^3.3.1",
+    "jquery.qrcode": "^1.0.3",
+    "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-cors": "0.0.16",
+    "koa-router": "^7.4.0",
+    "koa-views": "^6.1.4",
+    "koa2-cors": "^2.0.6",
+    "lodash": "^4.17.10",
+    "mysql": "^2.16.0",
+    "node-xss": "0.0.1",
+    "ora": "^3.0.0",
+    "reits-rpc": "^0.7.0",
+    "superagent": "^3.8.3",
+    "xss": "^1.0.3"
+  }
+}
