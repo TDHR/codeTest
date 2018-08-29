@@ -10,10 +10,10 @@ const ora = require('ora');
 const spinner = ora('Loading unicorns').start();
 // const myCipher = require('./util/cipher');
 // const myRandom = require('./util/myRandom');
-setTimeout(() => {
-    spinner.color = 'red';
-    spinner.text = 'Loading rainbows';
-},3000);
+// setTimeout(() => {
+//     spinner.color = 'red';
+//     spinner.text = 'Loading rainbows';
+// },3000);
 
 //设置跨域访问
 app.use(cors());
