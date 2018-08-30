@@ -14,6 +14,6 @@ const RpcConfig02 = {
     port:'18211'
 };
 
-const rpc = new RpcClient(RpcConfig01);
+const rpc = new RpcClient(RpcConfig02);
 
 module.exports = rpc;
