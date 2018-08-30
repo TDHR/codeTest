@@ -21,7 +21,7 @@ exports.index = async (ctx ,next) => {
         if(userData.success){
 
             let extendedUserAddress = userData.data; //擴展地址池之後的用戶地址
-            console.log(extendedUserAddress)
+
             let txData;
             txData = await activationAddress(extendedUserAddress);// 激活用戶地址
             if(!txData.txData.result){
@@ -33,11 +33,13 @@ exports.index = async (ctx ,next) => {
             }
         let address = params.address; //product address
         // console.error(txData) ;
+            console.log(txData);
         if(txData.success){
-            if(txData.result){
+
+            if(txData.txData.result){
                 ctx.body = {
                     success:true,
-                    txID:txData.txID,
+                    txID:txData.txData.result,
                     address:address,
                     user:user
                 }
@@ -135,21 +137,25 @@ async function extendPool(user) {
 
         let address = await rpcMethod.getAddr();//获取中转地址
 
-        let result = await activationAddress(address);//激活用戶池（应该将产品地址一起传过去做验证，测试阶段省去这一步）
+        let result = await activationAddress(address);//激活地址池（应该将产品地址一起传过去做验证，测试阶段省去这一步）
     // console.log(result)
-    if(!result.txData.result){
-        //如果交易出錯（項目地址沒幣了！）
-        return {
-            success:false,
-            message:`项目地址没币了！快打币！打币！打币！地址是：${result.fromAddress}`
+        if(!result.txData.result){
+            //如果交易出錯（項目地址沒幣了！）
+            return {
+                success:false,
+                message:`项目地址没币了！快打币！打币！打币！地址是：${result.fromAddress}`
+            }
         }
-    }
 
         let fromAddress = result.fromAddress;
         let extendTxId = await rpcMethod.sendToAddress(fromAddress);//做返回交易
         if(extendTxId){
             await sleep();//延时函数
             let userAddressNew = await rpcMethod.getaccountaddress(user);
+            // if(!userAddressNew){
+            //
+            // }
+            // console.log('扩展地址池之后用户的二级地址'+userAddressNew);
             return {
                 success:true,
                 message:'扩展成功',
@@ -169,6 +175,7 @@ const sleep = async function () {
     return new Promise((resolve,reject) => {
         setTimeout(function () {
             console.log('延时生效')
-        },1000)
+            resolve();
+        },3000)
     })
 };
